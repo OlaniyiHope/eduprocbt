@@ -76,8 +76,8 @@ const Cbt = () => {
                       UTME etc), professional certifications and entrance
                       exams(SAT, IELTS etc) question for free
                     </p>
-                    <a href="/contact" class="sasup-hero-started-btn-4">
-                      <span>Get Started</span>
+                    <a href="/register" class="sasup-hero-started-btn-4">
+                      <span>Get Started for free</span>
                     </a>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ const Cbt = () => {
                           <i class="fal fa-check"></i> Free Subscription
                         </li>
                         <a
-                          href="/contact"
+                          href="/register"
                           class="sasup-hero-started-btn-4"
                           style={{ backgroundColor: "#042954", color: "white" }}
                         >
@@ -250,7 +250,7 @@ const Cbt = () => {
                           style={{ color: "#042954" }}
                         ></li>
                         <a
-                          href="/contact"
+                          href="/register"
                           class="sasup-hero-started-btn-4"
                           style={{ backgroundColor: "#042954", color: "white" }}
                         >
@@ -416,11 +416,11 @@ const Cbt = () => {
                       Solve questions, get answers faster
                     </span>
                     <a
-                      href="/contact"
+                      href="/register"
                       class="sasup-hero-started-btn-4"
                       style={{ marginRight: "20px" }}
                     >
-                      <span>Get Started</span>
+                      <span>Get Started for free</span>
                     </a>
                   </div>
                 </div>

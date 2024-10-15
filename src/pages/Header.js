@@ -52,7 +52,7 @@ const Header = () => {
                 </div>
                 <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-8">
                   <div class="sasup-header-action-btn">
-                    <a href="/signup" class="sasup-transparent-btn">
+                    <a href="/login" class="sasup-transparent-btn">
                       <i class="fal fa-user"></i>Log in
                     </a>
                     <a

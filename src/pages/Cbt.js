@@ -19,7 +19,6 @@ const Cbt = () => {
   };
   return (
     <>
-      <Header />
       <body>
         <main>
           <div
@@ -99,7 +98,7 @@ const Cbt = () => {
           </div>
 
           <div class="service-area pb-110">
-            <div class="row">
+            <div class="container">
               <div class="col-xxl-12">
                 <div
                   class="sasup-section-title-wrap-4 mb-70 text-center wow fadeInUp"
@@ -116,8 +115,6 @@ const Cbt = () => {
                   </span>
                 </div>
               </div>
-            </div>
-            <div class="container">
               <div class="row align-items-center">
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                   <div class="sasup-hero-content-right-img-4">

@@ -13,6 +13,7 @@ import reviews from "./data";
 import Blog from "./pages/Blog";
 import Download from "./pages/Download";
 import Cbt from "./pages/Cbt";
+import Register from "./pages/Register";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/" element={<Cbt />} />
 
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </>

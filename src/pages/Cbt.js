@@ -209,21 +209,32 @@ const Cbt = () => {
                           class="service-right-list-item"
                           style={{ color: "#042954" }}
                         >
-                          All types of exam question
+                          <i class="fal fa-check"></i>5 years + past questions
+                          and answer
                         </li>
                         <br></br>
                         <li
                           class="service-right-list-item"
                           style={{ color: "#042954" }}
                         >
-                          <i class="fal fa-check"></i> Fill in the gap questions
+                          <i class="fal fa-check"></i>1000 + questions available
+                          to keep you up in practice
                         </li>
                         <br></br>
                         <li
                           class="service-right-list-item"
                           style={{ color: "#042954" }}
                         >
-                          <i class="fal fa-check"></i> Theory Questions
+                          <i class="fal fa-check"></i> 24 hours study time nad
+                          practice no restriction
+                        </li>
+                        <br></br>
+                        <li
+                          class="service-right-list-item"
+                          style={{ color: "#042954" }}
+                        >
+                          <i class="fal fa-check"></i> More than enough
+                          questions including theory and fill in the gap
                         </li>
                         <br></br>
                         <li

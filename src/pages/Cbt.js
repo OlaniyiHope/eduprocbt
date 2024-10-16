@@ -141,7 +141,7 @@ const Cbt = () => {
                           class="service-right-list-item"
                           style={{ color: "#042954" }}
                         >
-                          <i class="fal fa-check"></i> No Ad Interuptions school
+                          <i class="fal fa-check"></i> No Ad Interuptions
                         </li>
                         <br></br>
                         <li

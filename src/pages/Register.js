@@ -1,4 +1,3 @@
-import { LoadingButton } from "@mui/lab";
 import {
   Card,
   Checkbox,
@@ -502,7 +501,7 @@ const JwtRegister = () => {
                           </Paragraph>
                               </FlexBox>*/}
 
-                        <LoadingButton
+                        <Button
                           type="submit"
                           color="primary"
                           loading={loading}
@@ -511,7 +510,7 @@ const JwtRegister = () => {
                           class="btn btn-block btn-primary"
                         >
                           Register
-                        </LoadingButton>
+                        </Button>
 
                         <h6>
                           Already have an account?

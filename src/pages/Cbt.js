@@ -82,15 +82,7 @@ const Cbt = () => {
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                   <div class="sasup-hero-content-right-img-4">
-                    <img
-                      src={pro}
-                      alt="image not found"
-                      style={{
-                        float: "right",
-                        width: "80%",
-                        height: "80%",
-                      }}
-                    />
+                    <img src={pro} alt="image not found" />
                   </div>
                 </div>
               </div>
@@ -101,11 +93,11 @@ const Cbt = () => {
             <div class="container">
               <div class="col-xxl-12">
                 <div
-                  class="sasup-section-title-wrap-4 mb-70 text-center wow fadeInUp"
+                  class="sasup-section-title-wrap-4  cum text-center wow fadeInUp"
                   data-wow-delay=".2s"
                 >
                   <h4
-                    class="sasup-section-title-4"
+                    class="sasup-section-title-4 fast"
                     style={{ color: "#042954" }}
                   >
                     Fast track your learning process
@@ -118,20 +110,12 @@ const Cbt = () => {
               <div class="row align-items-center">
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                   <div class="sasup-hero-content-right-img-4">
-                    <img
-                      src={r1}
-                      alt="image not found"
-                      style={{
-                        float: "right",
-                        width: "80%",
-                        height: "80%",
-                      }}
-                    />
+                    <img src={r1} alt="image not found" />
                   </div>
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                   <div class="service-right-area-2 pl-70">
-                    <div class="section-title-2 mb-30">
+                    <div class="section-title-2 cum2">
                       <h3
                         class="s-title visible-br-lg visible-br-md wow fadeInUp"
                         data-wow-delay=".2s"
@@ -141,7 +125,7 @@ const Cbt = () => {
                       </h3>
                     </div>
                     <div
-                      class="service-right-list-2  mb-30 wow fadeInUp"
+                      class="service-right-list-2  cum2 wow fadeInUp"
                       data-wow-delay=".6s"
                     >
                       <ul>
@@ -197,7 +181,7 @@ const Cbt = () => {
               <div class="row align-items-center">
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                   <div class="service-right-area-2 ">
-                    <div class="section-title-2 mb-30">
+                    <div class="section-title-2 cum2">
                       <h3
                         class="s-title visible-br-lg visible-br-md wow fadeInUp"
                         data-wow-delay=".2s"
@@ -217,7 +201,7 @@ const Cbt = () => {
                       </p>
                     </div>
                     <div
-                      class="service-right-list-2  mb-30 wow fadeInUp"
+                      class="service-right-list-2  cum2 wow fadeInUp"
                       data-wow-delay=".6s"
                     >
                       <ul>
@@ -263,15 +247,7 @@ const Cbt = () => {
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                   <div class="sasup-hero-content-right-img-4">
-                    <img
-                      src={r5}
-                      alt="image not found"
-                      style={{
-                        float: "right",
-                        width: "80%",
-                        height: "80%",
-                      }}
-                    />
+                    <img src={r5} alt="image not found" />
                   </div>
                 </div>
               </div>
@@ -409,7 +385,7 @@ const Cbt = () => {
                     <h4 class="sasup-cta-title-4">
                       Do not loose your one month free trial
                     </h4>
-                    <span class="sasup-cta-subtitle-4 mb-30">
+                    <span class="sasup-cta-subtitle-4 cum2">
                       Solve questions, get answers faster
                     </span>
                     <a

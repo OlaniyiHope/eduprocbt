@@ -4850,7 +4850,7 @@ input:-ms-input-placeholder {
 }
 @media (max-width: 575px) {
   .sasup-hero-content-right-img-4 img {
-    max-width: 300px;
+    /* max-width: 300px; */
   }
 }
 .sasup-hero-content-4 {

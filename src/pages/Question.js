@@ -7,17 +7,7 @@ import pr from "./practice.png";
 import { MenuItem, Select, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 
-import {
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  Icon,
-  Radio,
-  RadioGroup,
-  Typography,
-  styled,
-} from "@mui/material";
+import { styled } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";

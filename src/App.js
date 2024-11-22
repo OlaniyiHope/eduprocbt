@@ -14,6 +14,7 @@ import Blog from "./pages/Blog";
 import Download from "./pages/Download";
 import Cbt from "./pages/Cbt";
 import Register from "./pages/Register";
+import Question from "./pages/Question";
 
 const App = () => {
   return (
@@ -21,6 +22,13 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Cbt />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/service" element={<Services />} />
+          <Route path="/download" element={<Download />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/" element={<Cbt />} />
+          <Route path="/question" element={<Question />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

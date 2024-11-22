@@ -75,7 +75,7 @@ const Cbt = () => {
                       UTME etc), professional certifications and entrance
                       exams(SAT, IELTS etc) question for free
                     </p>
-                    <a href="/register" class="sasup-hero-started-btn-4">
+                    <a href="/question" class="sasup-hero-started-btn-4">
                       <span>Get Started for free</span>
                     </a>
                   </div>
@@ -400,7 +400,7 @@ const Cbt = () => {
                       Solve questions, get answers faster
                     </span>
                     <a
-                      href="/register"
+                      href="/question"
                       class="sasup-hero-started-btn-4"
                       style={{ marginRight: "20px" }}
                     >

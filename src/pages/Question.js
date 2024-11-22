@@ -378,7 +378,7 @@ const Question = () => {
                   value={previewContent}
                   InputProps={{ readOnly: true }} // Make it read-only
                   className="form-control"
-                  style={{ fontSize: "18px" }}
+                  style={{ fontSize: "17.7px" }}
                 />
               </div>
             </div>

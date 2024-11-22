@@ -89,8 +89,8 @@ const Cbt = () => {
             </div>
           </div>
 
-          <div class="service-area pb-110">
-            <div class="container">
+          <div class="service-area pb-110" style={{ backgroundColor: "white" }}>
+            <div class="container" style={{ backgroundColor: "white" }}>
               <div class="col-xxl-12">
                 <div
                   class="sasup-section-title-wrap-4  cum text-center wow fadeInUp"

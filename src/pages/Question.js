@@ -333,7 +333,7 @@ const Question = () => {
               <button
                 type="submit"
                 class="sasup-theme-btn sasup-theme-btn-2 transition-5"
-                onClick={handleSave}
+                onClick={handlePreview}
                 style={{ backgroundColor: "#ffc107", color: "#042954" }}
               >
                 Save

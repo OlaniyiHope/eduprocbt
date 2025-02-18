@@ -17,6 +17,7 @@ import Register from "./pages/Register";
 import Question from "./pages/Question";
 import Dashboard from "./pages/Dashboard";
 import All from "./pages/All";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const App = () => {
   return (
@@ -24,7 +25,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Cbt />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboards" element={<Dashboard />} />
+          <Route path="/dashboard" element={<AdminDashboard />} />
           <Route path="/all-subject" element={<All />} />
           <Route path="/about" element={<About />} />
           <Route path="/service" element={<Services />} />

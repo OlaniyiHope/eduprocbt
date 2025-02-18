@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import TopNav from "./TopNav";
 import { useSidebar } from "./SidebarProvider";
-
+import { useNavigate } from "react-router-dom";
 import "./admin.css";
 import Header from "./Header";
-
 const All = () => {
   const { isSidebarOpen } = useSidebar(); // Sidebar state
   const subjects = [
@@ -29,48 +28,41 @@ const All = () => {
     "French",
     "Music",
   ];
+
   const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [step, setStep] = useState(1);
+  const navigate = useNavigate();
 
-  const years = Array.from({ length: 10 }, (_, index) => 2024 - index); // Generates last 20 years
-
-  // State to track selected subject and year
-  const [selectedSubject, setSelectedSubject] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(null);
-
-  // const handleSubjectClick = (subject) => {
-  //   setSelectedSubject(subject);
-  // };
   const handleSubjectClick = (subject) => {
     if (selectedSubjects.includes(subject)) {
-      // If the subject is already selected, remove it from the array
       setSelectedSubjects(selectedSubjects.filter((item) => item !== subject));
-    } else {
-      // If it's not selected yet and we haven't selected 4 subjects, add it
-      if (selectedSubjects.length < 4) {
-        setSelectedSubjects([...selectedSubjects, subject]);
-      }
+    } else if (selectedSubjects.length < 4) {
+      setSelectedSubjects([...selectedSubjects, subject]);
     }
   };
-  const handleYearClick = (year) => {
-    setSelectedYear(year);
+
+  const handleNextClick = () => {
+    if (selectedSubjects.length > 0) {
+      setStep(2);
+    }
   };
 
   return (
-    <div>
-      <body>
-        <div className={`main-wrapper ${isSidebarOpen ? "sidebar-open" : ""}`}>
-          <div
-            className="page-wrapper"
-            style={{ marginBottom: "100px", width: "80%", margin: "auto" }}
-          >
-            <div className="content">
+    <div className={`main-wrapper ${isSidebarOpen ? "sidebar-open" : ""}`}>
+      <div
+        className="page-wrapper"
+        style={{ marginBottom: "100px", width: "80%", margin: "auto" }}
+      >
+        <div className="content">
+          {step === 1 && (
+            <>
               <h6
-                class="sasup-hero-title-4"
+                className="sasup-hero-title-4"
                 style={{ color: "#042954", fontSize: "34px" }}
               >
                 Select the subject you want to practice
               </h6>
-              <br></br>
+              <br />
               <div className="row">
                 {subjects.map((subject, index) => (
                   <div
@@ -115,10 +107,117 @@ const All = () => {
                   </div>
                 ))}
               </div>
+              <button
+                onClick={handleNextClick}
+                className="btn btn-primary"
+                disabled={selectedSubjects.length === 0}
+                style={{
+                  padding: "10px 30px",
+                  fontSize: "16px",
+                  borderRadius: "5px",
+                  cursor:
+                    selectedSubjects.length === 0 ? "not-allowed" : "pointer",
+                  marginBottom: "50px",
+                }}
+              >
+                Next
+              </button>
+            </>
+          )}
+
+          {step === 2 && (
+            <div className="contact-area">
+              <div className="container">
+                <div className="row pb-140 justify-content-between">
+                  <div className="col-xxl-12 col-xl-12 col-lg-12">
+                    <div className="contact-info-left-top mb-30">
+                      <h4
+                        className="contact-info-title"
+                        style={{ color: "#042954" }}
+                      >
+                        Other Information
+                      </h4>
+                    </div>
+                    <div
+                      className="contact-form wow fadeInUp mb-50 mb-xl-0"
+                      data-wow-delay=".2s"
+                    >
+                      <form action="#" method="post" id="contact-form">
+                        <div className="row">
+                          {[
+                            {
+                              label: "Full Name",
+                              type: "text",
+                              name: "name",
+                              placeholder: "Name",
+                            },
+                            {
+                              label: "Email",
+                              type: "email",
+                              name: "email",
+                              placeholder: "Email",
+                            },
+                            {
+                              label: "Phone Number",
+                              type: "number",
+                              name: "phone",
+                              placeholder: "Phone Number",
+                            },
+                            {
+                              label: "Username",
+                              type: "text",
+                              name: "username",
+                              placeholder: "Username",
+                            },
+                            {
+                              label: "Password",
+                              type: "password",
+                              name: "password",
+                              placeholder: "Password",
+                            },
+                            {
+                              label: "Confirm Password",
+                              type: "password",
+                              name: "confirmPassword",
+                              placeholder: "Confirm Password",
+                            },
+                          ].map((field, index) => (
+                            <div key={index} className="col-xl-6 col-md-6">
+                              <div className="post-input post-input-2">
+                                <label
+                                  htmlFor={field.name}
+                                  className="post-input-label-defualt"
+                                >
+                                  {field.label} *
+                                </label>
+                                <input
+                                  type={field.type}
+                                  name={field.name}
+                                  id={field.name}
+                                  placeholder={field.placeholder}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <button
+                          className="sasup-theme-btn sasup-theme-btn-2 transition-5"
+                          href="/dashboard"
+                        >
+                          <a href="/dashboard" style={{ color: "white" }}>
+                            Sign Up
+                          </a>
+                        </button>
+                      </form>
+                      <p className="ajax-response"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
-      </body>
+      </div>
     </div>
   );
 };

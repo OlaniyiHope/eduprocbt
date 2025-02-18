@@ -15,6 +15,7 @@
     "formik": "^2.2.9",
     "jwt-decode": "^4.0.0",
     "moment": "^2.29.4",
+    "react-bootstrap": "^2.10.9",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-helmet": "^6.1.0",

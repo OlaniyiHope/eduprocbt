@@ -15,6 +15,8 @@ import Download from "./pages/Download";
 import Cbt from "./pages/Cbt";
 import Register from "./pages/Register";
 import Question from "./pages/Question";
+import Dashboard from "./pages/Dashboard";
+import All from "./pages/All";
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Cbt />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/all-subject" element={<All />} />
           <Route path="/about" element={<About />} />
           <Route path="/service" element={<Services />} />
           <Route path="/download" element={<Download />} />
@@ -29,9 +33,8 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/" element={<Cbt />} />
           <Route path="/question" element={<Question />} />
-
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />} />x
         </Routes>
       </BrowserRouter>
     </>

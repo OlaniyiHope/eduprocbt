@@ -75,7 +75,7 @@ const Cbt = () => {
                       UTME etc), professional certifications and entrance
                       exams(SAT, IELTS etc) question for free
                     </p>
-                    <a href="/question" class="sasup-hero-started-btn-4">
+                    <a href="/all-subject" class="sasup-hero-started-btn-4">
                       <span>Get Started for free</span>
                     </a>
                   </div>

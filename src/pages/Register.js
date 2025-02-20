@@ -62,6 +62,9 @@ const Register = () => {
 
       if (response.status === 201) {
         toast.success("Registration successful!");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
       } else {
         toast.error("Registration failed!");
       }

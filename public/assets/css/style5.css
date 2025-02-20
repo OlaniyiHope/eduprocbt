@@ -23694,27 +23694,40 @@ body.mini-sidebar.expand-menu
   display: flex;
 }
 .login-wrapper.bg-img {
-  background-image: url(./fr.jpeg);
   background-repeat: no-repeat;
-
+  background-image: url("../img/schs.jpg");
   background-size: cover;
   background-position: center;
 }
+.login-wrapper.bg-img .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Darken background */
+  z-index: 1;
+}
 .login-wrapper.bg-img .login-content {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(17px);
+  /* background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(17px); */
+
+
+  position: relative;
+  z-index: 2; /* Keep form content above the dark overlay */
+  background: rgba(255, 255, 255, 0.9); /* Light background to contrast */
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Optional for a nice effect */
+  color: black; /* Ensure text remains visible */
 }
 .login-wrapper.bg-img.register-wrap {
-  background-image: url(./fr.jpeg);
 }
 .login-wrapper.bg-img.forgot-pass-wrap {
-  background-image: url(./fr.jpeg);
 }
 .login-wrapper.bg-img.reset-pass-wrap {
-  background-image: url(./fr.jpeg);
 }
 .login-wrapper.bg-img.email-veri-wrap {
-  background-image: url(./fr.jpeg);
 }
 .login-wrapper .login-content {
   width: 50%;

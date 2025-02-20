@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./shadow.css";
-const Header = () => {
+const Headers = () => {
   return (
     <>
       <header>
@@ -30,13 +30,6 @@ const Header = () => {
                 </div>
                 <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-8 col-sm-8 col-6">
                   <div class="sasup-header-action-btn">
-                    <a
-                      href="/register"
-                      class="sasup-theme-btn sasup-broder-btn-space-3 ml-25 d-none d-sm-block"
-                      style={{ color: "#042954", backgroundColor: "#ffc107" }}
-                    >
-                      Get Started
-                    </a>
                     <a
                       href="/login"
                       class="sasup-theme-btn sasup-broder-btn-space-3 ml-25"
@@ -85,4 +78,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Headers;

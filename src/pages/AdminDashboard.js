@@ -175,7 +175,7 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <body>
+      <body style={{ backgroundColor: "#e5e9ee" }}>
         <div>
           <div className="main-wrapper">
             <TopNavs />

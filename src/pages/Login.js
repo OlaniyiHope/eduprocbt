@@ -56,6 +56,7 @@ const Login = () => {
         <div class="main-wrapper">
           <div class="account-content">
             <div class="login-wrapper bg-img">
+              <div class="overlay"></div>
               <div class="login-content logos">
                 <Formik
                   onSubmit={handleFormSubmit}
@@ -188,48 +189,6 @@ const Login = () => {
                               }}
                             />
                             Continue with Google
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-microsoft d-flex align-items-center justify-content-center mb-2"
-                            style={{
-                              width: "100%",
-                              backgroundColor: "#fff",
-                              color: "black",
-                              border: "1px solid black",
-                            }}
-                          >
-                            <img
-                              src={micro}
-                              alt=""
-                              style={{
-                                width: "25px",
-                                height: "25px",
-                                marginRight: "10px",
-                              }}
-                            />
-                            Continue with Microsoft
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-apple d-flex align-items-center justify-content-center"
-                            style={{
-                              width: "100%",
-                              backgroundColor: "#fff",
-                              color: "black",
-                              border: "1px solid black",
-                            }}
-                          >
-                            <img
-                              src={apple}
-                              alt=""
-                              style={{
-                                width: "25px",
-                                height: "25px",
-                                marginRight: "10px",
-                              }}
-                            />
-                            Continue with Apple
                           </button>
                         </div>
                         <div

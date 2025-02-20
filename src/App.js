@@ -36,7 +36,7 @@ const App = () => {
           <Route path="/" element={<Cbt />} />
           <Route path="/question" element={<Question />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />x
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </>

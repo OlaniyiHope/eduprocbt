@@ -9,6 +9,7 @@ const initialState = {
 };
 
 const apiUrl = process.env.REACT_APP_API_URL;
+console.log("API URL:", apiUrl);
 
 const isValidToken = (jwtToken) => {
   if (!jwtToken) {
@@ -243,21 +244,18 @@ export const AuthProvider = ({ children }) => {
   //   }
   // };
 
-  const register = async (
-    fullname,
-    email,
-    password,
-    phone = "",
-    address = ""
-  ) => {
+  const register = async (fullname, phone, username, email, password) => {
     try {
+      console.log("Sending request to API...");
       const response = await axios.post(`${apiUrl}/api/auth/signup`, {
         fullname,
-        email,
-        password,
-        phone, // Optional
-        address, // Optional
+        phone,
+        username,
+        email, // Optional
+        password, // Optional
       });
+
+      console.log("API Response:", response); // Debugging
 
       if (response.status === 201) {
         const { token, user } = response.data;

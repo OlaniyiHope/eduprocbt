@@ -45,7 +45,6 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
 
   const { register } = useAuth();
-
   const handleFormSubmit = async (values) => {
     setLoading(true);
     try {
@@ -56,6 +55,10 @@ const Register = () => {
         values.email,
         values.password
       );
+
+      if (!response || !response.status) {
+        throw new Error("Invalid response from server.");
+      }
 
       if (response.status === 201) {
         toast.success("Registration successful!");
@@ -69,33 +72,34 @@ const Register = () => {
       setLoading(false);
     }
   };
-  const redirectToGoogle = () => {
-    console.log("Redirecting to Google OAuth...");
-    window.location.href = `${process.env.REACT_APP_API_URL}/api/google`;
-  };
 
-  useEffect(() => {
-    console.log("GoogleOauth useEffect triggered");
-    console.log("Full URL:", window.location.href);
+  // const redirectToGoogle = () => {
+  //   console.log("Redirecting to Google OAuth...");
+  //   window.location.href = `${process.env.REACT_APP_API_URL}/api/google`;
+  // };
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const accessToken = urlParams.get("accessToken");
-    const refreshToken = urlParams.get("refreshToken");
+  // useEffect(() => {
+  //   console.log("GoogleOauth useEffect triggered");
+  //   console.log("Full URL:", window.location.href);
 
-    console.log("Extracted Tokens from URL:", { accessToken, refreshToken });
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const accessToken = urlParams.get("accessToken");
+  //   const refreshToken = urlParams.get("refreshToken");
 
-    if (accessToken && refreshToken) {
-      console.log("Tokens found! Storing them in localStorage.");
-      localStorage.setItem("jwtToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
-      axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+  //   console.log("Extracted Tokens from URL:", { accessToken, refreshToken });
 
-      console.log("Tokens saved! Navigating to /vision...");
-      navigate("/dashboard", { replace: true });
-    } else {
-      console.log("No valid tokens found in URL. Staying on /login.");
-    }
-  }, [navigate]);
+  //   if (accessToken && refreshToken) {
+  //     console.log("Tokens found! Storing them in localStorage.");
+  //     localStorage.setItem("jwtToken", accessToken);
+  //     localStorage.setItem("refreshToken", refreshToken);
+  //     axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+  //     console.log("Tokens saved! Navigating to /vision...");
+  //     navigate("/dashboard", { replace: true });
+  //   } else {
+  //     console.log("No valid tokens found in URL. Staying on /login.");
+  //   }
+  // }, [navigate]);
   return (
     <>
       <ToastContainer position="top-center" />
@@ -161,13 +165,13 @@ const Register = () => {
                         <input
                           type="text"
                           name="username"
-                          value={values.email}
+                          value={values.username}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className="form-control"
                           placeholder="Enter your email"
                         />
-                        {touched.email && errors.email && (
+                        {touched.username && errors.username && (
                           <small className="text-danger">
                             {errors.username}
                           </small>
@@ -263,7 +267,7 @@ const Register = () => {
                         <button
                           onClick={() => {
                             setFieldValue("isGoogleSignUp", true); // Mark Google signup
-                            redirectToGoogle(); // Redirect to OAuth
+                            // redirectToGoogle(); // Redirect to OAuth
                           }}
                           // onClick={redirectToGoogle}
                           class="btn btn-microsoft d-flex align-items-center justify-content-center mb-2"

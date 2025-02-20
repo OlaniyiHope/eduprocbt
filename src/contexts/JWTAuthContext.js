@@ -181,6 +181,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await axios.post(
         `${apiUrl}/api/auth/login`,
+
         { email, password },
         {
           withCredentials: true, // Include credentials with the request

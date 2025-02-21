@@ -44,7 +44,7 @@ const Login = () => {
     setLoading(true);
     try {
       await login(values.email, values.password);
-      navigate("/all-subject");
+      navigate("/dashboards");
     } catch (e) {
       setLoading(false);
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TopNav from "./TopNav";
 import { useSidebar } from "./SidebarProvider";
 import { useNavigate } from "react-router-dom";
@@ -37,6 +37,17 @@ const All = () => {
       setSelectedSubjects([...selectedSubjects, subject]);
     }
   };
+
+  const [examMode, setExamMode] = useState("Practice");
+  const [examTime, setExamTime] = useState(selectedSubjects.length * 30); // Default 30 mins per subject
+  const [shuffleQuestions, setShuffleQuestions] = useState(false);
+  const [shuffleOptions, setShuffleOptions] = useState(false);
+
+  // Update Exam Time when subjects change
+  useEffect(() => {
+    setExamTime(selectedSubjects.length * 30);
+  }, [selectedSubjects]);
+
   // const handleSubjectChange = (subject) => {
   //   if (selectedSubjects.includes(subject)) {
   //     setSelectedSubjects(selectedSubjects.filter((item) => item !== subject));
@@ -203,20 +214,128 @@ const All = () => {
                 )}
               </div>
 
-              {/* Column 2: Placeholder (Future Content) */}
-              <div className="col-md-4">
-                <h5 style={{ textAlign: "center" }}>Column 2</h5>
-                <p style={{ textAlign: "center", color: "gray" }}>
-                  Future Content Here
-                </p>
-              </div>
+              {/* Column 2: Student Profile Section */}
+              {/* Column 2: Student Profile Section */}
+              <div className="col-md-4 text-center">
+                {/* Profile Avatar */}
+                <div style={{ marginBottom: "20px" }}>
+                  <i
+                    className="fas fa-user-circle"
+                    style={{ fontSize: "200px", color: "#aaa" }}
+                  ></i>
+                </div>
 
-              {/* Column 3: Placeholder (Future Content) */}
+                {/* Editable Student Name */}
+                <div style={{ marginBottom: "20px" }}>
+                  <label style={{ fontWeight: "bold", display: "block" }}>
+                    Student Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    // value={studentName}
+                    // onChange={(e) => setStudentName(e.target.value)}
+                    style={{ textAlign: "center", width: "100%" }}
+                  />
+                </div>
+
+                {/* Full-Width Start Exam Button */}
+                <button
+                  className="btn btn-success"
+                  style={{
+                    padding: "10px 15px",
+                    fontSize: "16px",
+                    borderRadius: "5px",
+                    width: "100%",
+                  }}
+                >
+                  Start Exam
+                </button>
+              </div>
+              {/* Column 3: Exam Settings */}
               <div className="col-md-4">
-                <h5 style={{ textAlign: "center" }}>Column 3</h5>
-                <p style={{ textAlign: "center", color: "gray" }}>
-                  Future Content Here
-                </p>
+                <h5 style={{ textAlign: "center", marginBottom: "20px" }}>
+                  Exam Settings
+                </h5>
+
+                {/* Select Exam Mode */}
+                <div style={{ marginBottom: "20px" }}>
+                  <label style={{ fontWeight: "bold" }}>Select Mode:</label>
+                  <select
+                    className="form-control"
+                    value={examMode}
+                    onChange={(e) => setExamMode(e.target.value)}
+                  >
+                    <option value="Practice">Practice</option>
+                    <option value="Test">Test</option>
+                    <option value="Corrections">Corrections</option>
+                  </select>
+                </div>
+
+                {/* Time Selection (Default 30 mins per subject) */}
+                <div style={{ marginBottom: "20px" }}>
+                  <label style={{ fontWeight: "bold" }}>
+                    Total Exam Time (minutes):
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={examTime}
+                    onChange={(e) => setExamTime(Number(e.target.value))}
+                    style={{ textAlign: "center", width: "100%" }}
+                  />
+                </div>
+
+                {/* Shuffle Options */}
+                <div style={{ marginBottom: "20px" }}>
+                  <label style={{ fontWeight: "bold", display: "block" }}>
+                    Shuffle Options:
+                  </label>
+                  <div className="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="shuffleQuestions"
+                      checked={shuffleQuestions}
+                      onChange={() => setShuffleQuestions(!shuffleQuestions)}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="shuffleQuestions"
+                    >
+                      Shuffle Questions
+                    </label>
+                  </div>
+                  <div className="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="shuffleOptions"
+                      checked={shuffleOptions}
+                      onChange={() => setShuffleOptions(!shuffleOptions)}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="shuffleOptions"
+                    >
+                      Shuffle Options
+                    </label>
+                  </div>
+                </div>
+
+                {/* Instruction Button */}
+                <button
+                  className="btn btn-info"
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    fontSize: "16px",
+                    borderRadius: "5px",
+                  }}
+                  onClick={() => navigate("/instructions")}
+                >
+                  View Instructions
+                </button>
               </div>
             </div>
           </div>

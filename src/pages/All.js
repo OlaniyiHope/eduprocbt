@@ -4,8 +4,8 @@ import { useSidebar } from "./SidebarProvider";
 import { useNavigate } from "react-router-dom";
 import "./admin.css";
 import Headers from "./Headers";
+
 const All = () => {
-  const { isSidebarOpen } = useSidebar(); // Sidebar state
   const subjects = [
     "Mathematics",
     "English Language",
@@ -25,200 +25,200 @@ const All = () => {
     "Further Mathematics",
     "Technical Drawing",
     "Home Economics",
-    "French",
-    "Music",
   ];
 
   const [selectedSubjects, setSelectedSubjects] = useState([]);
-  const [step, setStep] = useState(1);
   const navigate = useNavigate();
-
-  const handleSubjectClick = (subject) => {
+  const [expandedSubject, setExpandedSubject] = useState(null);
+  const handleSubjectChange = (subject) => {
     if (selectedSubjects.includes(subject)) {
       setSelectedSubjects(selectedSubjects.filter((item) => item !== subject));
     } else if (selectedSubjects.length < 4) {
       setSelectedSubjects([...selectedSubjects, subject]);
     }
   };
+  // const handleSubjectChange = (subject) => {
+  //   if (selectedSubjects.includes(subject)) {
+  //     setSelectedSubjects(selectedSubjects.filter((item) => item !== subject));
+  //   } else if (selectedSubjects.length < 4) {
+  //     setSelectedSubjects([...selectedSubjects, subject]);
+  //   }
+  // };
 
+  const toggleDropdown = (subject) => {
+    setExpandedSubject(expandedSubject === subject ? null : subject);
+  };
   const handleNextClick = () => {
     if (selectedSubjects.length > 0) {
-      setStep(2);
+      navigate("/practice", { state: { subjects: selectedSubjects } });
     }
   };
 
   return (
     <>
-      <Headers />
-
-      <div className={`main-wrapper ${isSidebarOpen ? "sidebar-open" : ""}`}>
+      <TopNav />
+      <div className="main-wrapper">
         <div
           className="page-wrapper"
           style={{ marginBottom: "100px", width: "80%", margin: "auto" }}
         >
           <div className="content">
-            {step === 1 && (
-              <>
-                <h6
-                  className="sasup-hero-title-4"
-                  style={{ color: "#042954", fontSize: "34px" }}
-                >
-                  Select the subject you want to practice
-                </h6>
-                <br />
-                <div className="row">
-                  {subjects.map((subject, index) => (
-                    <div
-                      key={index}
-                      className="col-md-4 col-sm-6"
-                      style={{ marginBottom: "20px" }}
-                    >
-                      <div
-                        className={`card text-center ${
-                          selectedSubjects.includes(subject) ? "selected" : ""
-                        }`}
-                        onClick={() => handleSubjectClick(subject)}
-                        style={{
-                          padding: "20px",
-                          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-                          borderRadius: "8px",
-                          backgroundColor: selectedSubjects.includes(subject)
-                            ? "#042954"
-                            : "white",
-                          color: selectedSubjects.includes(subject)
-                            ? "white"
-                            : "black",
-                          cursor: "pointer",
-                          position: "relative",
-                        }}
-                      >
-                        <h4 className="card-title">{subject}</h4>
-                        {selectedSubjects.includes(subject) && (
-                          <span
-                            style={{
-                              position: "absolute",
-                              top: "10px",
-                              right: "10px",
-                              fontSize: "16px",
-                              fontWeight: "bold",
-                            }}
-                          >
-                            ✅
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  onClick={handleNextClick}
-                  className="btn btn-primary"
-                  disabled={selectedSubjects.length === 0}
+            <h6
+              className="sasup-hero-title-4"
+              style={{
+                color: "#042954",
+                fontSize: "24px",
+                textAlign: "center",
+              }}
+            >
+              Select the subjects you want to practice (Max: 4)
+            </h6>
+            <br />
+            <div
+              className="row"
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+              }}
+            >
+              {subjects.map((subject, index) => (
+                <div
+                  key={index}
+                  className="col-md-2 col-sm-4"
                   style={{
-                    padding: "10px 30px",
-                    fontSize: "16px",
-                    borderRadius: "5px",
-                    cursor:
-                      selectedSubjects.length === 0 ? "not-allowed" : "pointer",
-                    marginBottom: "50px",
+                    marginBottom: "10px",
+                    display: "flex",
+                    alignItems: "center",
                   }}
                 >
-                  Next
-                </button>
-              </>
-            )}
-
-            {step === 2 && (
-              <div className="contact-area">
-                <div className="container">
-                  <div className="row pb-140 justify-content-between">
-                    <div className="col-xxl-12 col-xl-12 col-lg-12">
-                      <div className="contact-info-left-top mb-30">
-                        <h4
-                          className="contact-info-title"
-                          style={{ color: "#042954" }}
-                        >
-                          Other Information
-                        </h4>
-                      </div>
-                      <div
-                        className="contact-form wow fadeInUp mb-50 mb-xl-0"
-                        data-wow-delay=".2s"
-                      >
-                        <form action="#" method="post" id="contact-form">
-                          <div className="row">
-                            {[
-                              {
-                                label: "Full Name",
-                                type: "text",
-                                name: "name",
-                                placeholder: "Name",
-                              },
-                              {
-                                label: "Email",
-                                type: "email",
-                                name: "email",
-                                placeholder: "Email",
-                              },
-                              {
-                                label: "Phone Number",
-                                type: "number",
-                                name: "phone",
-                                placeholder: "Phone Number",
-                              },
-                              {
-                                label: "Username",
-                                type: "text",
-                                name: "username",
-                                placeholder: "Username",
-                              },
-                              {
-                                label: "Password",
-                                type: "password",
-                                name: "password",
-                                placeholder: "Password",
-                              },
-                              {
-                                label: "Confirm Password",
-                                type: "password",
-                                name: "confirmPassword",
-                                placeholder: "Confirm Password",
-                              },
-                            ].map((field, index) => (
-                              <div key={index} className="col-xl-6 col-md-6">
-                                <div className="post-input post-input-2">
-                                  <label
-                                    htmlFor={field.name}
-                                    className="post-input-label-defualt"
-                                  >
-                                    {field.label} *
-                                  </label>
-                                  <input
-                                    type={field.type}
-                                    name={field.name}
-                                    id={field.name}
-                                    placeholder={field.placeholder}
-                                  />
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                          <button
-                            className="sasup-theme-btn sasup-theme-btn-2 transition-5"
-                            href="/dashboard"
-                          >
-                            <a href="/dashboard" style={{ color: "white" }}>
-                              Sign Up
-                            </a>
-                          </button>
-                        </form>
-                        <p className="ajax-response"></p>
-                      </div>
-                    </div>
-                  </div>
+                  <input
+                    type="checkbox"
+                    id={`subject-${index}`}
+                    value={subject}
+                    checked={selectedSubjects.includes(subject)}
+                    onChange={() => handleSubjectChange(subject)}
+                    disabled={
+                      !selectedSubjects.includes(subject) &&
+                      selectedSubjects.length >= 4
+                    }
+                    style={{ marginRight: "8px", cursor: "pointer" }}
+                  />
+                  <label
+                    htmlFor={`subject-${index}`}
+                    style={{ fontSize: "16px", cursor: "pointer" }}
+                  >
+                    {subject}
+                  </label>
                 </div>
+              ))}
+            </div>
+            <br />
+            {/* Three-column layout */}
+            <div className="row">
+              {/* Column 1: Selected Subjects List */}
+              <div className="col-md-4">
+                <h5 style={{ textAlign: "center" }}>Selected Subjects</h5>
+                {selectedSubjects.length === 0 ? (
+                  <p style={{ textAlign: "center", color: "gray" }}>
+                    No subject selected
+                  </p>
+                ) : (
+                  <ul className="list-group">
+                    {selectedSubjects.map((subject, index) => (
+                      <li
+                        key={index}
+                        className="list-group-item"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => toggleDropdown(subject)}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                          }}
+                        >
+                          {subject}
+                          <span>
+                            {expandedSubject === subject ? "🔽" : "▶️"}
+                          </span>
+                        </div>
+
+                        {/* Dropdown Form */}
+                        {expandedSubject === subject && (
+                          <div
+                            style={{
+                              marginTop: "10px",
+                              padding: "10px",
+                              border: "1px solid #ddd",
+                              borderRadius: "5px",
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {/* Exam Year Dropdown */}
+                            <label style={{ fontWeight: "bold" }}>
+                              Exam Year:
+                            </label>
+                            <select className="form-control">
+                              <option value="">Select Year</option>
+                              <option value="2023">2023</option>
+                              <option value="2022">2022</option>
+                              <option value="2021">2021</option>
+                              <option value="2020">2020</option>
+                            </select>
+
+                            {/* Number of Questions Dropdown */}
+                            <label
+                              style={{ fontWeight: "bold", marginTop: "10px" }}
+                            >
+                              Number of Questions:
+                            </label>
+                            <select className="form-control">
+                              <option value="">Select</option>
+                              <option value="10">10</option>
+                              <option value="20">20</option>
+                              <option value="30">30</option>
+                              <option value="40">40</option>
+                            </select>
+
+                            {/* Topic Selection Dropdown */}
+                            <label
+                              style={{ fontWeight: "bold", marginTop: "10px" }}
+                            >
+                              Topic of Interest:
+                            </label>
+                            <select className="form-control">
+                              <option value="">Select Topic</option>
+                              <option value="Algebra">Algebra</option>
+                              <option value="Geometry">Geometry</option>
+                              <option value="Trigonometry">Trigonometry</option>
+                              <option value="Statistics">Statistics</option>
+                            </select>
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-            )}
+
+              {/* Column 2: Placeholder (Future Content) */}
+              <div className="col-md-4">
+                <h5 style={{ textAlign: "center" }}>Column 2</h5>
+                <p style={{ textAlign: "center", color: "gray" }}>
+                  Future Content Here
+                </p>
+              </div>
+
+              {/* Column 3: Placeholder (Future Content) */}
+              <div className="col-md-4">
+                <h5 style={{ textAlign: "center" }}>Column 3</h5>
+                <p style={{ textAlign: "center", color: "gray" }}>
+                  Future Content Here
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

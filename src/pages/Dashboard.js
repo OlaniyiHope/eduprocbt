@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { useNavigate } from "react-router-dom";
 import "swiper/css/navigation";
 import "./admin.css";
 import { useSidebar } from "./SidebarProvider";
@@ -23,7 +24,7 @@ const Dashboard = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModals, setShowModals] = useState(false);
   const apiUrl = process.env.REACT_APP_API_URL;
-
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
 
   const [visions, setVisions] = useState([]);
@@ -83,6 +84,11 @@ const Dashboard = () => {
     "#fd7e14", // Orange
     "#6c757d", // Gray
   ];
+  const handleClick = (title) => {
+    if (title === "Practice for UTME") {
+      navigate("/practice-for-utme"); // Adjust the route as needed
+    }
+  };
 
   return (
     <div>
@@ -106,7 +112,11 @@ const Dashboard = () => {
                 <div className="left-section">
                   <div className="box-container">
                     {[
-                      { icon: "fas fa-book", title: "Practice for UTME" },
+                      {
+                        icon: "fas fa-book",
+                        title: "Practice for UTME",
+                        path: "/practice-for-utme",
+                      },
                       { icon: "fas fa-feather-alt", title: "Literary Texts" },
                       {
                         icon: "fas fa-graduation-cap",
@@ -130,7 +140,9 @@ const Dashboard = () => {
                         key={index}
                         style={{
                           backgroundColor: boxColors[index % boxColors.length],
+                          cursor: "pointer",
                         }}
+                        onClick={() => handleClick(item.title)}
                       >
                         <div className="box-icon">
                           <i

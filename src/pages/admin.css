@@ -552,3 +552,100 @@ body {
   object-fit: cover;
   border-radius: 10px;
 }
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Left Section */
+.left-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.box-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Default: 3 boxes per row */
+  gap: 10px;
+}
+
+.custom-box {
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  color: white;
+  width: 100% !important;
+  transition: transform 0.3s ease-in-out;
+}
+
+.custom-box:hover {
+  transform: scale(1.05);
+}
+
+/* Right Section */
+.right-section {
+  flex: 1;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 boxes per row on mobile */
+  }
+
+  .right-section {
+    width: 100%;
+  }
+
+  .hope {
+    margin-bottom: 100px;
+    margin-top: 100px;
+    width: 100% !important;
+    margin: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .box-container {
+    grid-template-columns: repeat(
+      2,
+      2fr
+    ); /* 1 box per row on very small screens */
+  }
+
+  .hope {
+    margin-bottom: 100px;
+    margin-top: 100px;
+    width: 100% !important;
+    margin: auto;
+  }
+}
+
+.hope {
+  margin-bottom: 100px;
+  margin-top: 100px;
+  width: 80%;
+  margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .right-section {
+    display: none;
+  }
+  .left-section {
+    width: 100%; /* Make the left section take full width on mobile */
+  }
+  .box-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Display 2 boxes per row */
+    gap: 10px;
+  }
+}

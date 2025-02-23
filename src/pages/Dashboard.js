@@ -97,15 +97,7 @@ const Dashboard = () => {
           {/*}  <SideNav />*/}
           <TopNav />
 
-          <div
-            class="page-wrapper"
-            style={{
-              marginBottom: "100px",
-              marginTop: "100px",
-              width: "80%",
-              margin: "auto",
-            }}
-          >
+          <div class="page-wrapper hope">
             <div class="content">
               <div className="main-container">
                 {/* Left Section - Boxes (50%) */}

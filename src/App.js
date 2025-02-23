@@ -18,6 +18,7 @@ import Question from "./pages/Question";
 import Dashboard from "./pages/Dashboard";
 import All from "./pages/All";
 import AdminDashboard from "./pages/AdminDashboard";
+import Exam from "./pages/Exam";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/download" element={<Download />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/start-exam" element={<Exam />} />
           <Route path="/" element={<Cbt />} />
           <Route path="/question" element={<Question />} />
           <Route path="/login" element={<Login />} />

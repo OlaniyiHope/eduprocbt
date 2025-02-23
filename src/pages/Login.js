@@ -44,8 +44,10 @@ const Login = () => {
     setLoading(true);
     try {
       await login(values.email, values.password);
+      toast.success("Login successful!");
       navigate("/dashboard");
     } catch (e) {
+      toast.error("An error occurred during login.");
       setLoading(false);
     }
   };

@@ -249,7 +249,7 @@ const All = () => {
                     width: "100%",
                   }}
                 >
-                  Start Exam
+                  <a href="/start-exam">Start Exam</a>
                 </button>
               </div>
               {/* Column 3: Exam Settings */}
@@ -322,7 +322,9 @@ const All = () => {
                     </label>
                   </div>
                 </div>
-
+                <label className="form-check-label" htmlFor="shuffleQuestions">
+                  Instructions
+                </label>
                 {/* Instruction Button */}
                 <button
                   className="btn btn-info"
@@ -334,7 +336,7 @@ const All = () => {
                   }}
                   onClick={() => navigate("/instructions")}
                 >
-                  View Instructions
+                  Click to View
                 </button>
               </div>
             </div>

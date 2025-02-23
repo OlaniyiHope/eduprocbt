@@ -110,3 +110,21 @@
   align-items: center; /* Vertically centers icon and text */
   gap: 5px; /* Adds space between icon and text */
 }
+
+/* Hide desktop navigation on small screens */
+@media screen and (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex !important;
+  }
+}
+
+/* Hide mobile navigation on larger screens */
+@media screen and (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
+}

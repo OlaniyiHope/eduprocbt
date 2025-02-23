@@ -1,0 +1,80 @@
+.exam-container {
+  width: 80%;
+  /* max-width: 800px; */
+  margin: auto;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.question-box {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.btn-outline-dark {
+  border: 1px solid #000;
+  color: #000;
+}
+
+.btn-outline-dark:hover {
+  background: #000;
+  color: #fff;
+}
+.btn-lg {
+  font-size: 1.2rem; /* Increase font size */
+  padding: 12px 20px !important; /* More padding for bigger buttons */
+  border-radius: 8px; /* Rounded corners */
+}
+.active-tab {
+  background-color: #007bff !important; /* Change to your preferred color */
+  color: white !important;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.custom-radio {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid black; /* Small black border */
+  appearance: none;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-radio:checked {
+  background-color: black; /* Fill when selected */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 400px;
+}
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}

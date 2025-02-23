@@ -36,24 +36,53 @@ const ExamResultModal = ({
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 modal-overlay ">
       {/* Modal Container */}
       <div
-        className="bg-white p-6 rounded-lg shadow-lg w-[90%] h-[75vh] flex flex-col relative overflow-y-auto"
+        className="bg-white p-6 rounded-lg shadow-lg w-[90%] h-[75vh] flex flex-col relative overflow-y-auto "
         style={{
           position: "relative",
 
           maxHeight: "90vh",
         }}
       >
-        {/* Close Button (X) */}
-        <button
-          className="absolute top-4 left-4 text-gray-700 hover:text-red-500 text-5xl font-bold mt-10"
-          style={{ backgroundColor: "#042954", border: "none", color: "white" }}
-          onClick={onClose}
-        >
-          ✖
-        </button>
-
         {/* Content Layout - Left (Score, Table) | Right (Charts) */}
         <div className="row h-full">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%", // Ensure full width
+              borderBottom: "1px solid #ccc",
+              marginTop: "40px",
+              paddingBottom: "12px",
+            }}
+          >
+            <h2
+              style={{
+                fontSize: "1.25rem", // Same as text-xl
+                fontWeight: "600", // Same as font-semibold
+                color: "black",
+                flexBasis: "80%", // Take most of the space
+              }}
+            >
+              Exam Result
+            </h2>
+            <button
+              style={{
+                fontSize: "1.5rem", // Same as text-2xl
+                fontWeight: "bold",
+                color: "#6b7280", // Tailwind gray-500
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                flexBasis: "20%", // Button takes less space
+                textAlign: "right",
+              }}
+              onClick={onClose}
+            >
+              &times;
+            </button>
+          </div>
+
           {/* Left Section - Score & Table */}
           <div className="col-md-7 d-flex flex-column justify-content-between p-4">
             {/* Score Box */}
@@ -122,71 +151,81 @@ const ExamResultModal = ({
             </div>
 
             <div className="mt-4 flex-grow overflow-auto border rounded-lg">
-              <table className="table table-bordered w-full text-lg">
-                <thead className="bg-gray-300 text-gray-800">
-                  <tr className="text-left">
-                    <th className="p-3">Subject</th>
-                    <th className="p-3">Visited</th>
-                    <th className="p-3">Attempted</th>
-                    <th className="p-3">Score</th>
-                    <th className="p-3">Aggregate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {breakdown.length > 0 ? (
-                    <>
-                      {breakdown.map((item, index) => (
-                        <tr
-                          key={index}
-                          className={
-                            index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                          }
-                        >
-                          <td className="p-3">{item.subject}</td>
-                          <td className="p-3">{item.visited}</td>
-                          <td className="p-3">{item.attempted}</td>
-                          <td className="p-3">{item.score}</td>
-                          <td className="p-3">{item.aggregate}</td>
-                        </tr>
-                      ))}
+              <div className="overflow-x-auto">
+                <table className="table table-bordered w-full min-w-max text-lg">
+                  <thead className="bg-gray-300 text-gray-800">
+                    <tr className="text-left">
+                      <th className="p-3">Subject</th>
+                      <th className="p-3">Visited</th>
+                      <th className="p-3">Attempted</th>
+                      <th className="p-3">Score</th>
+                      <th className="p-3">Aggregate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {breakdown.length > 0 ? (
+                      <>
+                        {breakdown.map((item, index) => (
+                          <tr
+                            key={index}
+                            className={
+                              index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                            }
+                          >
+                            <td className="p-3 whitespace-nowrap">
+                              {item.subject}
+                            </td>
+                            <td className="p-3">{item.visited}</td>
+                            <td className="p-3">{item.attempted}</td>
+                            <td className="p-3">{item.score}</td>
+                            <td className="p-3">{item.aggregate}</td>
+                          </tr>
+                        ))}
 
-                      {/* Total Row */}
-                      <tr className="bg-blue-200 font-bold text-gray-800">
-                        <td className="p-3">Total</td>
-                        <td className="p-3">
-                          {breakdown.reduce(
-                            (acc, item) => acc + item.visited,
-                            0
-                          )}
-                        </td>
-                        <td className="p-3">
-                          {breakdown.reduce(
-                            (acc, item) => acc + item.attempted,
-                            0
-                          )}
-                        </td>
-                        <td className="p-3">
-                          {breakdown.reduce((acc, item) => acc + item.score, 0)}
-                        </td>
-                        <td className="p-3">
-                          {(
-                            breakdown.reduce(
-                              (acc, item) => acc + item.aggregate,
+                        {/* Total Row */}
+                        <tr className="bg-blue-200 font-bold text-gray-800">
+                          <td className="p-3">Total</td>
+                          <td className="p-3">
+                            {breakdown.reduce(
+                              (acc, item) => acc + item.visited,
                               0
-                            ) / breakdown.length
-                          ).toFixed(2)}
+                            )}
+                          </td>
+                          <td className="p-3">
+                            {breakdown.reduce(
+                              (acc, item) => acc + item.attempted,
+                              0
+                            )}
+                          </td>
+                          <td className="p-3">
+                            {breakdown.reduce(
+                              (acc, item) => acc + item.score,
+                              0
+                            )}
+                          </td>
+                          <td className="p-3">
+                            {(
+                              breakdown.reduce(
+                                (acc, item) => acc + item.aggregate,
+                                0
+                              ) / breakdown.length
+                            ).toFixed(2)}
+                          </td>
+                        </tr>
+                      </>
+                    ) : (
+                      <tr>
+                        <td
+                          colSpan="5"
+                          className="text-center p-4 text-gray-500"
+                        >
+                          No data available
                         </td>
                       </tr>
-                    </>
-                  ) : (
-                    <tr>
-                      <td colSpan="5" className="text-center p-4 text-gray-500">
-                        No data available
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 

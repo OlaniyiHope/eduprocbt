@@ -811,8 +811,8 @@ const Exam = ({ totalTime }) => {
   return (
     <>
       <TopNav />
-      <div className="container " style={{ marginTop: "100px" }}>
-        <div className="d-flex justify-content-between align-items-center mb-3">
+      <div className="container" style={{ marginTop: "100px" }}>
+        <div className="d-flex justify-content-between align-items-center mb-3 time-submit-container">
           <h3 className="text-danger">
             Time Remaining: {formatTime(remainingTime)}
           </h3>
@@ -822,7 +822,7 @@ const Exam = ({ totalTime }) => {
         </div>
       </div>
 
-      <div className="container " style={{ marginTop: "100px" }}>
+      <div className="container " style={{ marginTop: "40px" }}>
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div className="exam-container p-4">
             {/* Tab Navigation */}

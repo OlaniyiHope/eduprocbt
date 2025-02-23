@@ -10,12 +10,14 @@ import {
   FiClock,
   FiFlag,
 } from "react-icons/fi";
+import { AiOutlineBarChart } from "react-icons/ai";
+import { FaQuestionCircle } from "react-icons/fa";
 import "./TopNav.css";
 import { BsLightbulb } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { FiXCircle } from "react-icons/fi";
 import lg from "./edu.PNG";
-
+import { FaClipboardList } from "react-icons/fa";
 import {
   AiOutlineHistory,
   AiOutlineStar,
@@ -198,27 +200,29 @@ const TopNav = () => {
           </li>
           <li className="nav-item">
             <a href="/brain-dump">
-              <BsLightbulb />
+              <FaClipboardList />
+
               <span>Idea</span>
             </a>
           </li>
 
           <li className="nav-item">
             <a href="/refinement">
-              <FiEdit />
-              <span>Refinement</span>
+              <FaQuestionCircle />
+
+              <span>Ask Me</span>
             </a>
           </li>
           <li className="nav-item">
             <a href="/retrospect">
-              <FiClock />
-              <span>Retrospect</span>
+              <AiOutlineBarChart />
+              <span>Statistics</span>
             </a>
           </li>
           <li className="nav-item">
             <a href="/sprint">
-              <FiFlag />
-              <span>Sprint</span>
+              <FiUser />
+              <span>Profile</span>
             </a>
           </li>
         </ul>

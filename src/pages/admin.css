@@ -631,7 +631,7 @@ body {
 
 .hope {
   margin-bottom: 100px;
-  margin-top: 100px;
+  margin-top: 50px !important;
   width: 80%;
   margin: auto;
 }

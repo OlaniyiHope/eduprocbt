@@ -8,30 +8,30 @@ import Headers from "./Headers";
 import axios from "axios";
 
 const All = () => {
-  const subjects = [
-    "Mathematics",
-    "English Language",
-    "Literature",
-    "Biology",
-    "Chemistry",
-    "Physics",
-    "Geography",
-    "History",
-    "Economics",
-    "Commerce",
-    "Accounting",
-    "Government",
-    "Computer Science",
-    "Agriculture",
-    "Civic Education",
-    "Further Mathematics",
-    "Technical Drawing",
-    "Home Economics",
-  ];
+  const [subjects, setSubjects] = useState([]);
 
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   const navigate = useNavigate();
   const [expandedSubject, setExpandedSubject] = useState(null);
+  const [examMode, setExamMode] = useState("Practice");
+  const [examTime, setExamTime] = useState(selectedSubjects.length * 30); // Default 30 mins per subject
+  const [shuffleQuestions, setShuffleQuestions] = useState(false);
+  const [shuffleOptions, setShuffleOptions] = useState(false);
+  useEffect(() => {
+    const fetchSubjects = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5001/api/get-jamb-subject"
+        );
+        setSubjects(response.data); // Update state with fetched subjects
+      } catch (error) {
+        console.error("Error fetching subjects:", error);
+      }
+    };
+
+    fetchSubjects();
+  }, []);
+
   const handleSubjectChange = (subject) => {
     if (selectedSubjects.includes(subject)) {
       setSelectedSubjects(selectedSubjects.filter((item) => item !== subject));
@@ -40,10 +40,7 @@ const All = () => {
     }
   };
 
-  const [examMode, setExamMode] = useState("Practice");
-  const [examTime, setExamTime] = useState(selectedSubjects.length * 30); // Default 30 mins per subject
-  const [shuffleQuestions, setShuffleQuestions] = useState(false);
-  const [shuffleOptions, setShuffleOptions] = useState(false);
+  // Fetch subjects from backend
 
   // Update Exam Time when subjects change
   useEffect(() => {
@@ -118,7 +115,7 @@ const All = () => {
             >
               {subjects.map((subject, index) => (
                 <div
-                  key={index}
+                  key={subject._id} // Use _id instead of index for better uniqueness
                   className="col-md-2 col-sm-4"
                   style={{
                     marginBottom: "10px",
@@ -128,25 +125,26 @@ const All = () => {
                 >
                   <input
                     type="checkbox"
-                    id={`subject-${index}`}
-                    value={subject}
-                    checked={selectedSubjects.includes(subject)}
-                    onChange={() => handleSubjectChange(subject)}
+                    id={`subject-${subject._id}`}
+                    value={subject.name} // ✅ Use subject.name instead of the whole object
+                    checked={selectedSubjects.includes(subject.name)} // ✅ Compare by name
+                    onChange={() => handleSubjectChange(subject.name)} // ✅ Pass name only
                     disabled={
-                      !selectedSubjects.includes(subject) &&
+                      !selectedSubjects.includes(subject.name) &&
                       selectedSubjects.length >= 4
                     }
                     style={{ marginRight: "8px", cursor: "pointer" }}
                   />
                   <label
-                    htmlFor={`subject-${index}`}
+                    htmlFor={`subject-${subject._id}`}
                     style={{ fontSize: "16px", cursor: "pointer" }}
                   >
-                    {subject}
+                    {subject.name} {/* ✅ Display subject name */}
                   </label>
                 </div>
               ))}
             </div>
+
             <br />
             {/* Three-column layout */}
             <div className="row">

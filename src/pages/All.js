@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "./admin.css";
 import Headers from "./Headers";
 
+import axios from "axios";
+
 const All = () => {
   const subjects = [
     "Mathematics",
@@ -59,9 +61,33 @@ const All = () => {
   const toggleDropdown = (subject) => {
     setExpandedSubject(expandedSubject === subject ? null : subject);
   };
-  const handleNextClick = () => {
-    if (selectedSubjects.length > 0) {
-      navigate("/practice", { state: { subjects: selectedSubjects } });
+
+  const handleCreateExam = async () => {
+    if (selectedSubjects.length === 0) {
+      alert("Please select at least one subject.");
+      return;
+    }
+
+    const examData = {
+      subjects: selectedSubjects,
+      mode: examMode,
+      time: examTime,
+      shuffleQuestions,
+      shuffleOptions,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/exams",
+        examData
+      );
+      if (response.status === 201) {
+        alert("Exam created successfully!");
+        navigate("/start-exam", { state: { examId: response.data.examId } });
+      }
+    } catch (error) {
+      console.error("Error creating exam:", error);
+      alert("Failed to create exam. Please try again.");
     }
   };
 
@@ -69,11 +95,8 @@ const All = () => {
     <>
       <TopNav />
       <div className="main-wrapper">
-        <div
-          className="page-wrapper"
-          style={{ marginBottom: "100px", width: "80%", margin: "auto" }}
-        >
-          <div className="content">
+        <div className="page-wrapper" style={{ width: "80%", margin: "auto" }}>
+          <div className="content" style={{ marginBottom: "100px" }}>
             <h6
               className="sasup-hero-title-4"
               style={{

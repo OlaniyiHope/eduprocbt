@@ -822,7 +822,10 @@ const Exam = ({ totalTime }) => {
         </div>
       </div>
 
-      <div className="container " style={{ marginTop: "40px" }}>
+      <div
+        className="container "
+        style={{ marginTop: "40px", marginBottom: "100px" }}
+      >
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div className="exam-container p-4">
             {/* Tab Navigation */}

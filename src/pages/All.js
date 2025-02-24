@@ -17,6 +17,9 @@ const All = () => {
   const [examTime, setExamTime] = useState(selectedSubjects.length * 30); // Default 30 mins per subject
   const [shuffleQuestions, setShuffleQuestions] = useState(false);
   const [shuffleOptions, setShuffleOptions] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
+  console.log(filteredData);
+
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
@@ -55,10 +58,6 @@ const All = () => {
   //   }
   // };
 
-  const toggleDropdown = (subject) => {
-    setExpandedSubject(expandedSubject === subject ? null : subject);
-  };
-
   const handleCreateExam = async () => {
     if (selectedSubjects.length === 0) {
       alert("Please select at least one subject.");
@@ -87,6 +86,54 @@ const All = () => {
       alert("Failed to create exam. Please try again.");
     }
   };
+  const uniqueSubjects = Array.from(
+    new Set(subjects.map((subject) => subject.subject))
+  ).map((subject) => subjects.find((s) => s.subject === subject));
+  console.log("filteredData:", filteredData);
+  console.log("Subjects:", subjects);
+  console.log("Selected Subjects:", selectedSubjects);
+
+  // useEffect(() => {
+  //   if (selectedSubject) {
+  //     const filtered = subjects.filter(
+  //       (item) => item.subject === selectedSubject
+  //     );
+  //     setFilteredData(filtered);
+  //   } else {
+  //     setFilteredData([]);
+  //   }
+  // }, [selectedSubject, subjects]);
+  // const toggleDropdown = (subject) => {
+  //   setExpandedSubject(expandedSubject === subject ? null : subject);
+  // };
+
+  // const toggleDropdown = (subject) => {
+  //   if (expandedSubject === subject) {
+  //     setExpandedSubject(null);
+  //     setFilteredData([]);
+  //   } else {
+  //     setExpandedSubject(subject);
+  //     const filtered = subjects.filter((item) => item.subject === subject);
+  //     setFilteredData(filtered);
+  //   }
+  // };
+
+  // console.log(filteredData);
+
+  const toggleDropdown = (subjectName) => {
+    if (expandedSubject === subjectName) {
+      setExpandedSubject(null);
+      setFilteredData([]); // Reset when collapsing
+    } else {
+      setExpandedSubject(subjectName);
+      const filtered = subjects.filter(
+        (item) =>
+          item.subject.trim().toLowerCase() === subjectName.trim().toLowerCase()
+      );
+      console.log("Filtered Subjects:", filtered);
+      setFilteredData(filtered.length > 0 ? filtered : []);
+    }
+  };
 
   return (
     <>
@@ -113,9 +160,9 @@ const All = () => {
                 justifyContent: "center",
               }}
             >
-              {subjects.map((subject, index) => (
+              {uniqueSubjects.map((subject) => (
                 <div
-                  key={subject._id} // Use _id instead of index for better uniqueness
+                  key={subject.subject}
                   className="col-md-2 col-sm-4"
                   style={{
                     marginBottom: "10px",
@@ -125,21 +172,21 @@ const All = () => {
                 >
                   <input
                     type="checkbox"
-                    id={`subject-${subject._id}`}
-                    value={subject.name} // ✅ Use subject.name instead of the whole object
-                    checked={selectedSubjects.includes(subject.name)} // ✅ Compare by name
-                    onChange={() => handleSubjectChange(subject.name)} // ✅ Pass name only
+                    id={`subject-${subject.subject}`} // Fixed template literal syntax
+                    value={subject.subject}
+                    checked={selectedSubjects.includes(subject.subject)}
+                    onChange={() => handleSubjectChange(subject.subject)} // Pass only the subject string
                     disabled={
-                      !selectedSubjects.includes(subject.name) &&
+                      !selectedSubjects.includes(subject.subject) &&
                       selectedSubjects.length >= 4
                     }
                     style={{ marginRight: "8px", cursor: "pointer" }}
                   />
                   <label
-                    htmlFor={`subject-${subject._id}`}
+                    htmlFor={`subject-${subject.subject}`} // Fixed template literal syntax
                     style={{ fontSize: "16px", cursor: "pointer" }}
                   >
-                    {subject.name} {/* ✅ Display subject name */}
+                    {subject.subject} {/* Ensure this is a string */}
                   </label>
                 </div>
               ))}
@@ -157,80 +204,77 @@ const All = () => {
                   </p>
                 ) : (
                   <ul className="list-group">
-                    {selectedSubjects.map((subject, index) => (
-                      <li
-                        key={index}
-                        className="list-group-item"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => toggleDropdown(subject)}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                          }}
+                    {selectedSubjects.map((subject, index) => {
+                      const subjectData = subjects.find(
+                        (s) => s.subject === subject
+                      );
+                      return (
+                        <li
+                          key={index}
+                          className="list-group-item"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => toggleDropdown(subject)}
                         >
-                          {subject}
-                          <span>
-                            {expandedSubject === subject ? "🔽" : "▶️"}
-                          </span>
-                        </div>
-
-                        {/* Dropdown Form */}
-                        {expandedSubject === subject && (
                           <div
                             style={{
-                              marginTop: "10px",
-                              padding: "10px",
-                              border: "1px solid #ddd",
-                              borderRadius: "5px",
+                              display: "flex",
+                              justifyContent: "space-between",
+                              alignItems: "center",
                             }}
-                            onClick={(e) => e.stopPropagation()}
                           >
-                            {/* Exam Year Dropdown */}
-                            <label style={{ fontWeight: "bold" }}>
-                              Exam Year:
-                            </label>
-                            <select className="form-control">
-                              <option value="">Select Year</option>
-                              <option value="2023">2023</option>
-                              <option value="2022">2022</option>
-                              <option value="2021">2021</option>
-                              <option value="2020">2020</option>
-                            </select>
-
-                            {/* Number of Questions Dropdown */}
-                            <label
-                              style={{ fontWeight: "bold", marginTop: "10px" }}
-                            >
-                              Number of Questions:
-                            </label>
-                            <select className="form-control">
-                              <option value="">Select</option>
-                              <option value="10">10</option>
-                              <option value="20">20</option>
-                              <option value="30">30</option>
-                              <option value="40">40</option>
-                            </select>
-
-                            {/* Topic Selection Dropdown */}
-                            <label
-                              style={{ fontWeight: "bold", marginTop: "10px" }}
-                            >
-                              Topic of Interest:
-                            </label>
-                            <select className="form-control">
-                              <option value="">Select Topic</option>
-                              <option value="Algebra">Algebra</option>
-                              <option value="Geometry">Geometry</option>
-                              <option value="Trigonometry">Trigonometry</option>
-                              <option value="Statistics">Statistics</option>
-                            </select>
+                            {subject}
+                            <span>
+                              {expandedSubject === subject ? "🔽" : "▶️"}
+                            </span>
                           </div>
-                        )}
-                      </li>
-                    ))}
+
+                          {expandedSubject === subject &&
+                            filteredData.length > 0 && (
+                              <div className="mt-2 p-2 border rounded">
+                                <label className="fw-bold">Exam Year:</label>
+                                <select className="form-control">
+                                  <option value="">-- Select Year --</option>
+                                  {filteredData.map((item) => (
+                                    <option
+                                      key={item._id}
+                                      value={item.examYear}
+                                    >
+                                      {item.examYear}
+                                    </option>
+                                  ))}
+                                </select>
+
+                                <label className="fw-bold mt-2">
+                                  Number of Questions:
+                                </label>
+                                <select className="form-control">
+                                  <option value="">-- Select Number --</option>
+                                  {filteredData.map((item) => (
+                                    <option
+                                      key={item._id}
+                                      value={item.numQuestions}
+                                    >
+                                      {item.numQuestions}
+                                    </option>
+                                  ))}
+                                </select>
+
+                                <label className="fw-bold mt-2">
+                                  Topic of Interest:
+                                </label>
+                                <select className="form-control">
+                                  <option value="">-- Select Topic --</option>
+                                  {filteredData.map((item) => (
+                                    <option key={item._id} value={item.topic}>
+                                      {item.topic}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                            )}
+                        </li>
+                      );
+                    })}
                   </ul>
                 )}
               </div>
